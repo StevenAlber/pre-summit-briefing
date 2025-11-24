@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRYONIS | Pre-Summit Strategic Briefing</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050608;
+            --gold-main: #D4AF37;
+            --gold-light: #F1C766;
+            --gold-dark: #8a7020;
+            --text-white: #FFFFFF;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--gold-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            /* Grain Texture Overlay */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* Main Card Container */
+        .invitation-card {
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid var(--gold-dark);
+            padding: 60px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(5,6,8,0.9) 0%, rgba(10,12,16,0.95) 100%);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        /* Inner Golden Frame */
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            pointer-events: none;
+        }
+
+        /* Typography Utilities */
+        .gold-text {
+            color: var(--gold-main);
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-main), var(--gold-light), var(--gold-main));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300%;
+            animation: goldShimmer 8s infinite linear;
+        }
+
+        .white-text {
+            color: rgba(255,255,255,0.85);
+        }
+
+        .small-caps {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+        }
+
+        /* HEADER SECTION */
+        header {
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .company-header {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            color: var(--gold-main);
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            margin-bottom: 8px;
+        }
+
+        .address-line {
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            color: rgba(212, 175, 55, 0.5);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin: 40px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .subtitle {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        /* BODY SECTION */
+        .content-body {
+            text-align: justify;
+            font-family: var(--font-sans);
+            font-weight: 200;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+
+        .highlight {
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        /* AGENDA SECTION */
+        .agenda-container {
+            margin: 40px 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .agenda-item {
+            display: flex;
+            justify-content: flex-start;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .agenda-item:last-child {
+            border-bottom: none;
+        }
+
+        .time {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            width: 100px;
+            color: var(--gold-light);
+            flex-shrink: 0;
+        }
+
+        .event {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: var(--text-white);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* CONTRIBUTION SECTION */
+        .contribution-block {
+            text-align: center;
+            margin: 50px 0;
+            padding: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.02);
+        }
+
+        .contribution-text {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            color: var(--gold-light);
+        }
+
+        /* DETAILS & LOGISTICS */
+        .logistics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .logistics-col strong {
+            display: block;
+            color: var(--gold-dark);
+            margin-bottom: 5px;
+            font-family: var(--font-serif);
+        }
+
+        /* SIGNATURE */
+        .signature-block {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .signer-name {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--gold-main);
+            letter-spacing: 0.1em;
+            border-top: 1px solid rgba(212, 175, 55, 0.4);
+            display: inline-block;
+            padding-top: 20px;
+            width: 60%;
+        }
+
+        .signer-title {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            margin-top: 8px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* ANIMATION */
+        @keyframes goldShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .invitation-card {
+                padding: 30px 20px;
+                border: none;
+            }
+            .invitation-card::before {
+                display: none;
+            }
+            h1 { font-size: 1.8rem; }
+            .logistics {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .content-body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-card">
+        <header>
+            <div class="company-header small-caps">KRYONIS SOVEREIGN SYSTEMS LIMITED (HONG KONG)</div>
+            <div class="address-line">Unit 1104, 11/F, Crawford House • Reg No: HK-CR-34921X • Strategic Projects Div</div>
+            
+            <h1 class="gold-text">The Pre-Summit<br>Strategic Briefing</h1>
+            <div class="subtitle">A Private Council on Metabolic Capital</div>
+        </header>
+
+        <div class="content-body">
+            <p>
+                Amidst the noise of the global convergence in Dubai, true signal is found in silence. You are invited to join a strictly curated circle of sovereign principals and scientific visionaries for an architectural unveiling of the post-fiat era.
+                <br><br>
+                We will reveal <span class="highlight">TEC-X</span> and the <span class="highlight">SABM-X</span> module—the world’s first sovereign financial instrument backed by the verifiable metabolic output of the Arctic biosphere. This is the transition from an extractive economy to a regenerative bio-economy. This is not a pitch; it is a blueprint for the next century of value.
+            </p>
+        </div>
+
+        <div class="agenda-container">
+            <div class="agenda-item">
+                <div class="time">14:00</div>
+                <div class="event">Arctic Bio-Oracle Demonstration</div>
+            </div>
+            <div class="agenda-item">
+                <div class="time">15:00</div>
+                <div class="event">AEGIS-7 Financial Architecture Breakdown</div>
+            </div>
+            <div class="agenda-item">
+                <div class="time">16:00</div>
+                <div class="event">Genesis Allocation & Strategic Counsel</div>
+            </div>
+        </div>
+
+        <div class="contribution-block">
+            <span class="contribution-text gold-text">PARTICIPATION CONTRIBUTION: USD 25,000</span>
+        </div>
+
+        <div class="logistics">
+            <div class="logistics-col">
+                <strong>Date & Time</strong>
+                February 2, 2026<br>
+                14:00 — 17:00 GST
+            </div>
+            <div class="logistics-col">
+                <strong>Location</strong>
+                The Ritz-Carlton DIFC<br>
+                Private Boardroom (Suite Access Only)
+            </div>
+            <div class="logistics-col">
+                <strong>Protocol</strong>
+                Business Formal / National Dress<br>
+                Strictly Confidential
+            </div>
+        </div>
+
+        <div class="signature-block">
+            <div class="signer-name">Steven Alber</div>
+            <span class="signer-title">Founder & Chief Architect<br>KRYONIS Sovereign Systems Limited (Hong Kong)</span>
+        </div>
+    </div>
+
+</body>
+</html>
